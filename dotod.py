@@ -39,7 +39,7 @@ def dotod(path: Path):
             if lnn.is_symlink():
                 lnn.unlink()
                 dead_links += 1
-            (Path.cwd() / path).mkdir(mode=0o755, parents=True, exist_ok=True)
+            lnn.parent.mkdir(mode=0o755, parents=True, exist_ok=True)
             lnn.symlink_to(Path.cwd() / path / tgt)
             new_links += 1
         elif lnn.is_symlink() and lnn.readlink() == Path.cwd() / path / tgt:
